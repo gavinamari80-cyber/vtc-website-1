@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+			<meta name="color-scheme" content="dark">
+				<meta name="supported-color-schemes" content="dark">
+					<meta name="viewport" content="width=device-width, initial-scale=1.0">
+						<meta name="description" content="VTC – the premier competitive league hub for The Thrill of the Fight 2. Fight cards, rankings, results and athlete roster.">
+							<title>VTC | Virtual Thrill Championship</title>
+							<link rel="icon" href="logo.png" type="image/png">
+								<link rel="preconnect" href="https://fonts.googleapis.com">
+									<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+										<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+											<link rel="stylesheet" href="styles.css?v=16">
+</head>
+	<body>
+		<header class="ufc-header">
+			<div class="header-container">
+				<nav class="nav-left" aria-label="Main">
+					<button class="ufc-nav-btn active" onclick="switchTab(event, 'home')">HOME</button>
+					<div class="nav-item-dropdown">
+						<button class="ufc-nav-btn events-hover-btn">EVENTS</button>
+						<div class="subnav-dropdown">
+							<button class="subnav-btn" onclick="switchTab(event, 'upcoming')">UPCOMING EVENTS</button>
+							<button class="subnav-btn" onclick="switchTab(event, 'past')">PAST EVENTS</button>
+						</div>
+					</div>
+					<button class="ufc-nav-btn" onclick="switchTab(event, 'rankings')">RANKINGS</button>
+					<button class="ufc-nav-btn" onclick="switchTab(event, 'roster')">ATHLETES</button>
+				</nav>
+				<div class="logo-center">
+					<!-- Put your logo file named logo.png next to index.html -->
+					<img id="site-logo" class="logo-img" src="logo.png" alt="VTC" hidden="">
+						<svg id="logo-fallback" class="logo-svg" viewBox="0 0 120 44" role="img" aria-label="VTC">
+							<text x="0" y="40" textLength="118" lengthAdjust="spacingAndGlyphs">VTC</text>
+						</svg>
+					</div>
+				<nav class="nav-right" aria-label="Secondary">
+					<button class="ufc-nav-btn" onclick="switchTab(event, 'ad')">ADVERTISEMENT</button>
+					<button class="ufc-nav-btn" onclick="switchTab(event, 'watch')">WATCH</button>
+					<a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer" class="ufc-nav-link">DISCORD</a>
+					<a href="https://www.youtube.com/channel/UCH1eR58BPr41l9e6GdY5rpg" target="_blank" rel="noopener noreferrer" class="ufc-nav-link">YOUTUBE</a>
+				</nav>
+			</div>
+		</header>
+
+		<div class="ticker-bar" aria-hidden="true">
+			<div class="ticker-track">
+				<span class="ticker-item">
+					<span class="ticker-badge">SOON</span> ABA 003 · SUN NOV 1 · 2:30 PM EST · TOKYO, JAPAN
+				</span>
+				<span class="ticker-sep">◆</span>
+				<span class="ticker-item">
+					<span class="ticker-badge">FINAL</span> ABA 002 RESULTS ARE IN
+				</span>
+				<span class="ticker-sep">◆</span>
+				<span class="ticker-item">JOIN THE DISCORD TO SIGN UP FOR FIGHT NIGHTS</span>
+				<span class="ticker-sep">◆</span>
+				<span class="ticker-item">
+					<span class="ticker-badge">SOON</span> ABA 003 · SUN NOV 1 · 2:30 PM EST · TOKYO, JAPAN
+				</span>
+				<span class="ticker-sep">◆</span>
+				<span class="ticker-item">
+					<span class="ticker-badge">FINAL</span> ABA 002 RESULTS ARE IN
+				</span>
+				<span class="ticker-sep">◆</span>
+				<span class="ticker-item">JOIN THE DISCORD TO SIGN UP FOR FIGHT NIGHTS</span>
+				<span class="ticker-sep">◆</span>
+			</div>
+		</div>
+
+		<main class="container">
+			<section id="home" class="tab-content active">
+				<div class="featured-event">
+					<div class="featured-left">
+						<p class="featured-kicker">VTC · NEXT EVENT</p>
+						<h1 class="featured-title">ABA 003</h1>
+						<p class="featured-meta">AMATEUR SERIES · SUN, NOV 1 · 2:30 PM EST · TOKYO, JAPAN</p>
+						<p class="featured-desc">
+							The official home of fight cards, rankings and results. ABA 001 and ABA 002 are in the books, so check the full results under Past Events. ABA 003 is next, live from Tokyo.
+						</p>
+						<div class="hero-buttons">
+							<a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer" class="hero-btn primary">Join our Discord →</a>
+							<button class="hero-btn secondary" onclick="switchTab(null, 'upcoming')">All Events</button>
+							<button class="hero-btn secondary" onclick="switchTab(null, 'past')">ABA 002 Results</button>
+						</div>
+					</div>
+					<div class="featured-watermark" aria-hidden="true">VTC</div>
+				</div>
+
+				<div class="info-card">
+					<h3>ABOUT VTC</h3>
+					<p>
+						Welcome to VTC, the premier competitive league hub for <em>The Thrill of the Fight 2</em>. We bring structure to VR boxing by hosting weekly numbered fight nights complete with full match cards, undercards, and main events, alongside weekly amateur bouts for fighters building up their records.
+					</p>
+				</div>
+			</section>
+
+			<section id="watch" class="tab-content">
+				<div class="watch-hero-container">
+					<div class="watch-graphic-col">
+						<div class="watch-fighters-stage">
+							<div class="watch-fighter-img" data-main-event="aba001" data-slot="0">
+								<svg viewBox="0 0 100 120" width="100%" height="100%">
+									<circle cx="50" cy="35" r="22" fill="#e0e0e0"/>
+									<path d="M 20 100 Q 50 60 80 100" fill="#e0e0e0"/>
+								</svg>
+							</div>
+							<span class="watch-vs-badge">VS</span>
+							<div class="watch-fighter-img" data-main-event="aba001" data-slot="1">
+								<svg viewBox="0 0 100 120" width="100%" height="100%">
+									<circle cx="50" cy="35" r="22" fill="#cccccc"/>
+									<path d="M 20 100 Q 50 60 80 100" fill="#cccccc"/>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<div class="watch-info-col">
+						<h1 class="watch-event-title">ABA 003</h1>
+						<p class="watch-event-meta">SUN, NOV 1 · 2:30 PM EST</p>
+						<p class="watch-event-desc">Don't miss a moment of ABA 003.</p>
+						<h3 class="watch-how-title">WHERE TO WATCH:</h3>
+						<div class="watch-platform-box">
+							<div class="platform-brand">
+								<svg width="28" height="22" viewBox="0 0 127.14 96.36" fill="#5865F2" aria-hidden="true">
+									<path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.68,1.76,1.36,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,121.5,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,45.92,53.87,53,48.81,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,45.92,96.1,53,91.05,65.69,84.69,65.69Z"/>
+								</svg>
+								<span>DISCORD</span>
+							</div>
+							<a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer" class="watch-btn-red">WATCH ON DISCORD</a>
+						</div>
+						<div class="watch-platform-box">
+							<div class="platform-brand platform-yt">
+								<svg width="28" height="20" viewBox="0 0 28 20" aria-hidden="true">
+									<rect width="28" height="20" rx="4" fill="#FF0000"/>
+									<path d="M11.5 5.5v9l7.5-4.5-7.5-4.5z" fill="#fff"/>
+								</svg>
+								<span>YOUTUBE</span>
+							</div>
+							<a href="https://www.youtube.com/channel/UCH1eR58BPr41l9e6GdY5rpg" target="_blank" rel="noopener noreferrer" class="watch-btn-red">WATCH ON YOUTUBE</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="ad" class="tab-content">
+				<h2 class="section-title">ADVERTISEMENT</h2>
+				<div class="info-card empty-state">
+					<p>Sponsorship &amp; ad slots coming soon.</p>
+					<p class="empty-sub">Interested in partnering with VTC? Reach out in Discord.</p>
+				</div>
+			</section>
+
+			<section id="upcoming" class="tab-content">
+				<h2 class="section-title">UPCOMING EVENTS</h2>
+				<div class="events-list-container">
+					<!-- Populated by script.js from eventsData -->
+				</div>
+			</section>
+
+			<section id="past" class="tab-content">
+				<h2 class="section-title">PAST FIGHT CARDS</h2>
+				<div id="past-list" class="past-list"></div>
+				<div id="past-empty" class="info-card empty-state" hidden="">
+					<p>No completed fight cards yet.</p>
+				</div>
+			</section>
+
+			<section id="rankings" class="tab-content">
+				<h2 class="section-title">RANKINGS</h2>
+
+				<div class="p4p-block">
+					<div class="p4p-header">
+						<p class="division-label">Pound for Pound</p>
+						<h3 class="champ-name">TBD</h3>
+						<p class="champ-tag">#1 Pound-for-Pound</p>
+					</div>
+					<ol class="rank-list p4p-list">
+						<li class="rank-item">
+							<b>1</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>2</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>3</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>4</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>5</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>6</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>7</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>8</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>9</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>10</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>11</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>12</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>13</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>14</b>
+							<span>TBD</span>
+						</li>
+						<li class="rank-item">
+							<b>15</b>
+							<span>TBD</span>
+						</li>
+					</ol>
+				</div>
+
+				<div class="divisions-grid">
+					<div class="division-block">
+						<p class="division-label">Lightweight</p>
+						<h3 class="champ-name">TBD</h3>
+						<p class="champ-tag">Champion</p>
+						<div class="champ-photo">
+							<svg viewBox="0 0 200 170" aria-hidden="true">
+								<circle cx="112" cy="62" r="34" fill="#d0d0d0"/>
+								<path d="M30 170 Q40 112 112 104 Q184 112 194 170Z" fill="#d0d0d0"/>
+								<path d="M52 170 L84 118 L112 150 L140 118 L172 170Z" fill="#111"/>
+								<path d="M84 170 L96 140 L128 140 L140 170Z" fill="#e0a800"/>
+							</svg>
+						</div>
+						<ol class="rank-list">
+							<li class="rank-item">
+								<b>1</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>2</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>3</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>4</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>5</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>6</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>7</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>8</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>9</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>10</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>11</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>12</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>13</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>14</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>15</b>
+								<span>TBD</span>
+							</li>
+						</ol>
+					</div>
+					<div class="division-block">
+						<p class="division-label">Welterweight</p>
+						<h3 class="champ-name">TBD</h3>
+						<p class="champ-tag">Champion</p>
+						<div class="champ-photo">
+							<svg viewBox="0 0 200 170" aria-hidden="true">
+								<circle cx="112" cy="62" r="34" fill="#d0d0d0"/>
+								<path d="M30 170 Q40 112 112 104 Q184 112 194 170Z" fill="#d0d0d0"/>
+								<path d="M52 170 L84 118 L112 150 L140 118 L172 170Z" fill="#111"/>
+								<path d="M84 170 L96 140 L128 140 L140 170Z" fill="#e0a800"/>
+							</svg>
+						</div>
+						<ol class="rank-list">
+							<li class="rank-item">
+								<b>1</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>2</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>3</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>4</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>5</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>6</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>7</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>8</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>9</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>10</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>11</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>12</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>13</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>14</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>15</b>
+								<span>TBD</span>
+							</li>
+						</ol>
+					</div>
+					<div class="division-block">
+						<p class="division-label">Middleweight</p>
+						<h3 class="champ-name">TBD</h3>
+						<p class="champ-tag">Champion</p>
+						<div class="champ-photo">
+							<svg viewBox="0 0 200 170" aria-hidden="true">
+								<circle cx="112" cy="62" r="34" fill="#d0d0d0"/>
+								<path d="M30 170 Q40 112 112 104 Q184 112 194 170Z" fill="#d0d0d0"/>
+								<path d="M52 170 L84 118 L112 150 L140 118 L172 170Z" fill="#111"/>
+								<path d="M84 170 L96 140 L128 140 L140 170Z" fill="#e0a800"/>
+							</svg>
+						</div>
+						<ol class="rank-list">
+							<li class="rank-item">
+								<b>1</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>2</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>3</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>4</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>5</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>6</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>7</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>8</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>9</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>10</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>11</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>12</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>13</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>14</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>15</b>
+								<span>TBD</span>
+							</li>
+						</ol>
+					</div>
+					<div class="division-block">
+						<p class="division-label">Heavyweight</p>
+						<h3 class="champ-name">TBD</h3>
+						<p class="champ-tag">Champion</p>
+						<div class="champ-photo">
+							<svg viewBox="0 0 200 170" aria-hidden="true">
+								<circle cx="112" cy="62" r="34" fill="#d0d0d0"/>
+								<path d="M30 170 Q40 112 112 104 Q184 112 194 170Z" fill="#d0d0d0"/>
+								<path d="M52 170 L84 118 L112 150 L140 118 L172 170Z" fill="#111"/>
+								<path d="M84 170 L96 140 L128 140 L140 170Z" fill="#e0a800"/>
+							</svg>
+						</div>
+						<ol class="rank-list">
+							<li class="rank-item">
+								<b>1</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>2</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>3</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>4</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>5</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>6</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>7</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>8</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>9</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>10</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>11</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>12</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>13</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>14</b>
+								<span>TBD</span>
+							</li>
+							<li class="rank-item">
+								<b>15</b>
+								<span>TBD</span>
+							</li>
+						</ol>
+					</div>
+				</div>
+			</section>
+
+			<section id="roster" class="tab-content">
+				<h2 class="section-title">ACTIVE ROSTER</h2>
+				<p id="roster-hint" class="roster-hint">Click a fighter to see their record.</p>
+				<div id="roster-grid" class="roster-grid"></div>
+				<div id="roster-empty" class="info-card empty-state">
+					<p>No athletes on the roster yet.</p>
+					<p class="empty-sub">
+						Want to fight? <a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer">Join the Discord</a> to sign up for upcoming cards.
+					</p>
+				</div>
+				<div class="info-card roster-join">
+					<p style="text-align:center;color:var(--muted);">
+						Want to fight? <a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer" style="color:inherit;font-weight:700;">Join the Discord</a> to sign up for upcoming cards!
+					</p>
+				</div>
+			</section>
+		</main>
+
+		<div id="fighter-modal" class="modal" hidden="">
+			<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="fm-name">
+				<button class="modal-close" type="button" aria-label="Close" onclick="closeFighter()">&times;</button>
+				<div id="fm-photo" class="fm-photo" hidden=""></div>
+				<h3 id="fm-name" class="fm-name"></h3>
+				<p id="fm-total" class="fm-total"></p>
+				<div class="fm-stats">
+					<div class="fm-stat">
+						<span id="fm-dec">0</span>
+						<label>Wins by Decision</label>
+					</div>
+					<div class="fm-stat">
+						<span id="fm-ko">0</span>
+						<label>Wins by KO</label>
+					</div>
+					<div class="fm-stat">
+						<span id="fm-draw">0</span>
+						<label>Draws</label>
+					</div>
+					<div class="fm-stat">
+						<span id="fm-loss">0</span>
+						<label>Losses</label>
+					</div>
+				</div>
+				<h4 class="fm-hist-title">Fight History</h4>
+				<ul id="fm-history" class="fm-history"></ul>
+			</div>
+		</div>
+
+		<footer class="site-footer">
+			<div class="footer-top">
+				<div class="footer-brand">
+					<span class="footer-logo">VTC</span>
+					<div class="footer-brand-text">
+						<strong>VIRTUAL THRILL CHAMPIONSHIP</strong>
+						<span>A THRILL OF THE FIGHT 2 LEAGUE</span>
+					</div>
+				</div>
+				<nav class="footer-nav" aria-label="Footer">
+					<button type="button" onclick="switchTab(null, 'upcoming')">EVENTS</button>
+					<button type="button" onclick="switchTab(null, 'rankings')">RANKINGS</button>
+					<button type="button" onclick="switchTab(null, 'roster')">ATHLETES</button>
+					<button type="button" onclick="switchTab(null, 'watch')">WATCH</button>
+				</nav>
+				<div class="footer-social">
+					<a href="https://discord.gg/wKUY59tKUA" target="_blank" rel="noopener noreferrer" class="footer-social-btn">DISCORD</a>
+					<a href="https://www.youtube.com/channel/UCH1eR58BPr41l9e6GdY5rpg" target="_blank" rel="noopener noreferrer" class="footer-social-btn">YOUTUBE</a>
+				</div>
+			</div>
+		</footer>
+
+		<script src="script.js?v=8"></script>
+	</body>
+</html>
