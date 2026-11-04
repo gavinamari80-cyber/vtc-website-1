@@ -1272,4 +1272,51 @@ h2.section-title::after {
 
 .past-list { display: flex; flex-direction: column; gap: 14px; }
 .bout-row.result-row em { margin: 0 6px; }
+.method.award { background: var(--accent-dim); color: #fff; }
 .method.dec, .method.forf { background: var(--surface-3); color: var(--ink); border: 1px solid var(--line); }
+
+/* ===== PARTNERS ===== */
+.partner-intro { color: var(--muted); max-width: 640px; margin: 0 0 24px; line-height: 1.6; }
+.partner-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+}
+.partner-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color .2s, transform .2s;
+}
+.partner-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.partner-tag {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-bright);
+}
+.partner-name {
+    font-family: var(--display);
+    font-size: 44px;
+    line-height: 1;
+    letter-spacing: 1px;
+    color: var(--ink);
+}
+.partner-card p { color: var(--muted); line-height: 1.5; flex: 1; }
+.partner-btn {
+    display: inline-block;
+    text-align: center;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 12px 18px;
+    border-radius: 6px;
+    transition: background .2s;
+}
+.partner-btn:hover { background: var(--accent-dim); }

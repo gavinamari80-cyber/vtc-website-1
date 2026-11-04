@@ -5,41 +5,6 @@
 // Each event needs: id, badge, number, date, venue, matchups (array of "A VS B"), and card sections.
 const eventsData = [
     {
-        id: 'aba003',
-        badge: 'ABA',
-        number: '003',
-        date: 'Sun, Nov 1 · 2:30 PM EST',
-        venue: 'Tokyo, Japan',
-        matchups: [
-            'Lamar VS rigid',
-            'Cobra Boy VS Ryan Garcia',
-            'Sephtis VS Bobcob',
-            'Ctuckk VS Matt Tyson',
-            'Nick Diaz VS Nick Diaz',
-            'Grayson VS MacEm',
-            'demo VS Vinny',
-            'Zatras VS Dragon5000',
-            'Remnant VS Zento',
-            'Omar Overdrive VS KitoTotf'
-        ],
-        card: {
-            'Main Event':     [{ wc: 'WW', a: 'Lamar', b: 'rigid' }],
-            'Co-Main Event':  [{ wc: 'LW', a: 'Cobra Boy', b: 'Ryan Garcia' }],
-            'Main Card': [
-                { wc: 'LW', a: 'Sephtis', b: 'Bobcob' },
-                { wc: 'MW', a: 'Ctuckk', b: 'Matt Tyson' },
-                { wc: 'WW', a: 'Nick Diaz', b: 'Nick Diaz' },
-                { wc: 'WW', a: 'Grayson', b: 'MacEm' }
-            ],
-            'Prelims': [
-                { wc: 'WW', a: 'demo', b: 'Vinny' },
-                { wc: 'WW', a: 'Zatras', b: 'Dragon5000' },
-                { wc: 'CW', a: 'Remnant', b: 'Zento' },
-                { wc: 'CW', a: 'Omar Overdrive', b: 'KitoTotf' }
-            ]
-        }
-    },
-    {
         id: 'aba004',
         badge: 'ABA',
         number: '004',
@@ -72,6 +37,35 @@ const eventsData = [
 // ---------- PAST EVENT RESULTS ----------
 // w = winner, l = loser. m: 'dec' | 'ko' | 'draw' | 'forf' (no-show, counts as a decision win). verb is the Discord wording.
 const pastEvents = [
+    {
+        id: 'aba003',
+        title: 'ABA 003',
+        badge: 'ABA',
+        number: '003',
+        date: 'Sun, Nov 1 · 2:30 PM EST',
+        venue: 'Final Results',
+        awards: [
+            { label: 'Performance of the Night', who: 'Mystic' },
+            { label: 'Fight of the Night', who: 'Sephtis & Bobcob' }
+        ],
+        sections: [
+            { name: 'PRELIMS', bouts: [
+                { w: 'Grayson',   wRec: '2-0-0', l: 'MacEm', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                // Two different fighters are both called Nick Diaz. The loser is "Nick Diaz #2" so their records stay separate.
+                { w: 'Nick Diaz', wRec: '2-0-0', l: 'Nick Diaz #2', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'Sephtis',   wRec: '2-0-0', l: 'Bobcob', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'Mystic',    wRec: '2-0-0', wNote: '(1 TKO)', l: 'Omar Overdrive', lRec: '0-1-0', m: 'dec', verb: 'beats' }
+            ]},
+            { name: 'MAIN CARD', bouts: [
+                { w: 'Matt Tyson', wRec: '2-0-0', wNote: '(1 TKO)', l: 'Remnant', lRec: '0-1-0', m: 'ko', verb: "TKO's" },
+                { w: 'Vinny',      wRec: '1-0-0', l: 'demo', lRec: '1-1-0', m: 'dec', verb: 'beats' },
+                { w: 'Cobra Boy',  wRec: '3-0-0', wNote: '(1 TKO)', l: 'Oliveira', lRec: '1-2-0', m: 'dec', verb: 'beats' }
+            ]},
+            { name: 'MAIN EVENT', bouts: [
+                { w: 'Lamar', wRec: '2-0-0', l: 'Seth', lRec: '0-1-0', m: 'ko', verb: "TKO's" }
+            ]}
+        ]
+    },
     {
         id: 'aba002',
         title: 'ABA 002',
@@ -122,6 +116,9 @@ const pastEvents = [
     }
 ];
 
+// Display name: hides a trailing " #2" tag (used to keep two fighters with the same name apart)
+function dn(n) { return String(n || '').replace(/\s*#\d+$/, ''); }
+
 // ---------- FIGHT RESULTS (for roster / records) ----------
 // Winner first. method: 'dec' | 'ko' | 'draw'
 // Example: { ev: 'AMA 001', a: 'Winner Name', b: 'Loser Name', m: 'ko' }
@@ -131,7 +128,7 @@ pastEvents.forEach(ev => ev.sections.forEach(sec => sec.bouts.forEach(b => {
 })));
 
 // Fighters on the roster who have not yet fought
-const rosterExtras = [];
+const rosterExtras = ['Ctuckk'];
 
 // Pre-league records (counts only). Example: 'Name': { dec: 1, loss: 1 }
 const earlierRecords = {};
@@ -205,7 +202,7 @@ pastEvents.forEach(ev => {
 function resultText(eventId) {
     const b = pastBouts[eventId] && pastBouts[eventId][currentMatchupIndices[eventId]];
     if (!b) return '';
-    return `${b.w} def. ${b.l} · ${b.m === 'ko' ? 'KO' : b.m === 'draw' ? 'Draw' : b.m === 'forf' ? 'Forfeit' : 'Decision'}`;
+    return `${dn(b.w)} def. ${dn(b.l)} · ${b.m === 'ko' ? 'KO' : b.m === 'draw' ? 'Draw' : b.m === 'forf' ? 'Forfeit' : 'Decision'}`;
 }
 
 function stepMatchup(eventId, dir) {
@@ -214,7 +211,7 @@ function stepMatchup(eventId, dir) {
     currentMatchupIndices[eventId] = (currentMatchupIndices[eventId] + dir + list.length) % list.length;
     const el = document.getElementById(`${eventId}-title`);
     if (el) {
-        el.textContent = list[currentMatchupIndices[eventId]];
+        el.textContent = dn(list[currentMatchupIndices[eventId]]);
         el.classList.toggle('long', el.textContent.length > 22);
     }
     const rEl = document.getElementById(`${eventId}-result`);
@@ -395,13 +392,13 @@ function fighterStats(name) {
         const label = f.m === 'dec' ? 'Decision' : f.m === 'ko' ? 'KO' : f.m === 'forf' ? 'Forfeit' : 'Draw';
         if (f.m === 'draw' && (f.a === name || f.b === name)) {
             st.draw++;
-            st.history.push({ ev: f.ev, text: `Draw vs ${f.a === name ? f.b : f.a}` });
+            st.history.push({ ev: f.ev, text: `Draw vs ${dn(f.a === name ? f.b : f.a)}` });
         } else if (f.a === name) {
             st[f.m === 'forf' ? 'dec' : f.m]++;
-            st.history.push({ ev: f.ev, text: `Win (${label}) vs ${f.b}` });
+            st.history.push({ ev: f.ev, text: `Win (${label}) vs ${dn(f.b)}` });
         } else if (f.b === name) {
             st.loss++;
-            st.history.push({ ev: f.ev, text: `Loss (${label}) vs ${f.a}` });
+            st.history.push({ ev: f.ev, text: `Loss (${label}) vs ${dn(f.a)}` });
         }
     });
     const extra = earlierRecords[name];
@@ -439,16 +436,16 @@ function buildRoster() {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'roster-card';
-        btn.setAttribute('aria-label', `View profile for ${name}`);
+        btn.setAttribute('aria-label', `View profile for ${dn(name)}`);
 
         const thumb = document.createElement('span');
         thumb.className = 'rc-photo';
-        thumb.textContent = name.replace(/[^A-Za-z0-9]/g, '').charAt(0).toUpperCase() || '?';
+        thumb.textContent = dn(name).replace(/[^A-Za-z0-9]/g, '').charAt(0).toUpperCase() || '?';
 
         const src = photoFor(name);
         if (src) {
             const img = new Image();
-            img.alt = name;
+            img.alt = dn(name);
             img.onload = () => { thumb.textContent = ''; thumb.appendChild(img); };
             img.src = src;
         }
@@ -457,7 +454,7 @@ function buildRoster() {
         info.className = 'rc-info';
         const n = document.createElement('span');
         n.className = 'rc-name';
-        n.textContent = name;
+        n.textContent = dn(name);
         const t = document.createElement('span');
         t.className = 'rc-sub';
         t.textContent = recordText(st);
@@ -470,7 +467,7 @@ function buildRoster() {
 
 function openFighter(name) {
     const st = fighterStats(name);
-    document.getElementById('fm-name').textContent = name;
+    document.getElementById('fm-name').textContent = dn(name);
     document.getElementById('fm-total').textContent = 'Record: ' + recordText(st);
     document.getElementById('fm-dec').textContent = st.dec;
     document.getElementById('fm-ko').textContent = st.ko;
@@ -483,7 +480,7 @@ function openFighter(name) {
     const psrc = photoFor(name);
     if (psrc) {
         const img = new Image();
-        img.alt = name;
+        img.alt = dn(name);
         img.onload = () => { photo.appendChild(img); photo.hidden = false; };
         img.src = psrc;
     }
@@ -562,11 +559,22 @@ function renderPast() {
                 const label = b.m === 'ko' ? 'KO' : b.m === 'draw' ? 'Draw' : b.m === 'forf' ? 'Forfeit' : 'Decision';
                 cardHtml += `
                     <div class="bout-row result-row">
-                        <span><b>${b.w}</b><em>def.</em><b>${b.l}</b></span>
+                        <span><b>${dn(b.w)}</b><em>def.</em><b>${dn(b.l)}</b></span>
                         <span class="method ${b.m}">${label}</span>
                     </div>`;
             });
         });
+
+        if (ev.awards && ev.awards.length) {
+            cardHtml += `<h5 class="card-section">Awards</h5>`;
+            ev.awards.forEach(a => {
+                cardHtml += `
+                    <div class="bout-row result-row">
+                        <span><b>${a.who}</b></span>
+                        <span class="method award">${a.label}</span>
+                    </div>`;
+            });
+        }
 
         card.innerHTML = `
             <div class="ufc-event-row">
@@ -590,7 +598,7 @@ function renderPast() {
                     <button class="arrow-btn" title="Next Bout" onclick="nextMatchup('${ev.id}')" aria-label="Next bout">❯</button>
                 </div>
                 <div class="event-info-col">
-                    <h2 class="${titleClass}" id="${ev.id}-title">${first}</h2>
+                    <h2 class="${titleClass}" id="${ev.id}-title">${dn(first)}</h2>
                     <p class="event-date">${ev.date}</p>
                     <p class="event-venue" id="${ev.id}-result">${resultText(ev.id)}</p>
                 </div>
