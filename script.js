@@ -34,6 +34,34 @@ const eventsData = [
                 { wc: 'LW', a: 'Oliveira', b: 'KitoTotf' }
             ]
         }
+    },
+    {
+        id: 'aba006',
+        badge: 'ABA',
+        number: '006',
+        date: 'Sun, Nov 22 · 2:30 PM EST',
+        venue: 'Venue TBD',
+        matchups: ['TBD VS TBD'],
+        card: {
+            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
+        }
+    },
+    {
+        id: 'aba007',
+        badge: 'ABA',
+        number: '007',
+        date: 'Sun, Nov 29 · 2:30 PM EST',
+        venue: 'Venue TBD',
+        matchups: ['TBD VS TBD'],
+        card: {
+            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
+        }
     }
 ];
 

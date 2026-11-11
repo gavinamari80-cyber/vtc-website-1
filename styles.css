@@ -887,20 +887,20 @@ h2.section-title::after {
 }
 .rc-photo {
     flex: none;
-    width: 56px;
-    height: 56px;
+    width: 72px;
+    height: 72px;
     background: var(--surface-2);
     border-radius: 8px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     overflow: hidden;
-    font: 600 20px/56px var(--display);
+    font: 600 24px/72px var(--display);
     color: var(--muted);
 }
 .rc-photo img {
     flex: none;
-    width: 150%;      /* zoom in so the face fills the small square */
+    width: 100%;      /* head and shoulders, top-aligned so the whole face shows */
     height: auto;
     max-width: none;
     display: block;
