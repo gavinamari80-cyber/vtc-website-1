@@ -5,31 +5,34 @@
 // Each event needs: id, badge, number, date, venue, matchups (array of "A VS B"), and card sections.
 const eventsData = [
     {
-        id: 'aba004',
-        badge: 'ABA',
-        number: '004',
-        date: 'TBD',
-        venue: 'Venue TBD',
-        matchups: ['TBD VS TBD'],
-        card: {
-            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
-        }
-    },
-    {
         id: 'aba005',
         badge: 'ABA',
         number: '005',
-        date: 'TBD',
-        venue: 'Venue TBD',
-        matchups: ['TBD VS TBD'],
+        date: 'Sun, Nov 15 · 2:30 PM EST',
+        venue: 'Abu Dhabi',
+        matchups: [
+            'TBD VS TBD',
+            'Seth VS Kye',
+            'BartGiggle VS Bash',
+            'Dean VS jackson',
+            'Oliveira VS KitoTotf'
+        ],
         card: {
             'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
             'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
+            'Main Card': [
+                { wc: 'TBD', a: 'TBD', b: 'TBD' },
+                { wc: 'TBD', a: 'TBD', b: 'TBD' },
+                { wc: 'TBD', a: 'TBD', b: 'TBD' },
+                { wc: 'TBD', a: 'TBD', b: 'TBD' },
+                { wc: 'TBD', a: 'TBD', b: 'TBD' }
+            ],
+            'Prelims': [
+                { wc: 'MW', a: 'Seth', b: 'Kye' },
+                { wc: 'CW', a: 'BartGiggle', b: 'Bash' },
+                { wc: 'CW', a: 'Dean', b: 'jackson' },
+                { wc: 'LW', a: 'Oliveira', b: 'KitoTotf' }
+            ]
         }
     }
 ];
@@ -37,6 +40,31 @@ const eventsData = [
 // ---------- PAST EVENT RESULTS ----------
 // w = winner, l = loser. m: 'dec' | 'ko' | 'draw' | 'forf' (no-show, counts as a decision win). verb is the Discord wording.
 const pastEvents = [
+    {
+        id: 'aba004',
+        title: 'ABA 004',
+        badge: 'ABA',
+        number: '004',
+        date: 'Nov 2026',
+        venue: 'Final Results',
+        sections: [
+            { name: 'PRELIMS', bouts: [
+                { w: 'Dragon5000', wRec: '1-2-0', l: 'Omar Overdrive', lRec: '0-2-0', m: 'dec', verb: 'beats' },
+                { w: 'Seth',       wRec: '1-1-0', l: 'Dean', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'Cobra Boy',  wRec: '4-0-0', wNote: '(2 TKO)', l: 'baker', lRec: '0-1-0', m: 'ko', verb: "TKO's" }
+                // Yuro vs BartGiggle: "outcome will be figured out after card", add it here once there is a result
+            ]},
+            { name: 'MAIN CARD', bouts: [
+                { w: 'demo',   wRec: '2-1-0', l: 'Nick Diaz #2', lRec: '0-2-0', m: 'dec', verb: 'beats' },
+                { w: 'Vinny',  wRec: '2-0-0', wNote: '(1 TKO)', l: 'InCore', lRec: '2-1-0', m: 'ko', verb: "TKO's" },
+                { w: 'Zac',    wRec: '1-0-0', l: 'Oliveira', lRec: '1-3-0', m: 'dec', verb: 'beats' },
+                { w: 'Ctuckk', wRec: '1-0-0', wNote: '(1 TKO)', l: 'Matt Tyson', lRec: '2-1-0', m: 'ko', verb: "TKO's" }
+            ]},
+            { name: 'MAIN EVENT', bouts: [
+                { w: 'Ryan Garcia', wRec: '2-0-0', l: 'Grayson', lRec: '2-1-0', m: 'dec', verb: 'beats' }
+            ]}
+        ]
+    },
     {
         id: 'aba003',
         title: 'ABA 003',
@@ -128,10 +156,15 @@ pastEvents.forEach(ev => ev.sections.forEach(sec => sec.bouts.forEach(b => {
 })));
 
 // Fighters on the roster who have not yet fought
-const rosterExtras = ['Ctuckk'];
+const rosterExtras = [];
 
 // Pre-league records (counts only). Example: 'Name': { dec: 1, loss: 1 }
-const earlierRecords = {};
+const earlierRecords = {
+    // Discord shows these records, but the earlier fights aren't on the site yet.
+    // Replace with real fights once the results are known.
+    'Dragon5000': { loss: 1 },
+    'InCore':     { dec: 1 }
+};
 
 // Optional: force a photo filename when the auto-slug looks bad
 // Example: 'Grayson “The Ragin Cajun”': 'grayson.png'
