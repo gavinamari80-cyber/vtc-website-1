@@ -640,7 +640,7 @@ h2.section-title::after {
 
 .divisions-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 14px;
 }
 .division-block {
@@ -1320,3 +1320,39 @@ h2.section-title::after {
     transition: background .2s;
 }
 .partner-btn:hover { background: var(--accent-dim); }
+
+
+/* ===== RANKINGS (generated from rankingsData in script.js) ===== */
+.rank-link { cursor: pointer; border-radius: 4px; transition: background 0.15s; }
+.rank-link:hover, .rank-link:focus-visible { background: rgba(59,130,246,0.10); outline: none; }
+.rank-item span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank-rec {
+    margin-left: auto;
+    padding-left: 8px;
+    flex-shrink: 0;
+    font: 600 10px/1 var(--body);
+    font-style: normal;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+}
+.champ-meta { font: 500 11px/1.4 var(--body); color: var(--muted); margin-top: 6px; }
+.champ-photo img { height: 100%; width: auto; max-width: 100%; object-fit: contain; object-position: right bottom; display: block; }
+.nr-label {
+    margin: 12px 0 2px;
+    font: 600 10px/1 var(--body);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.nr-list { padding-top: 4px; }
+
+.fm-nick {
+    margin-top: 6px;
+    font: italic 600 15px/1.2 var(--body);
+    letter-spacing: 0.5px;
+    color: var(--accent-bright);
+}
+.fm-nick[hidden] { display: none; }
+
+.champ-photo.has-photo { height: 180px; border-radius: 6px; border-bottom: none; }
+.champ-photo.has-photo img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 4%; }

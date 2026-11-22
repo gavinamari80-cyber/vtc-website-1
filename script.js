@@ -5,41 +5,10 @@
 // Each event needs: id, badge, number, date, venue, matchups (array of "A VS B"), and card sections.
 const eventsData = [
     {
-        id: 'aba005',
+        id: 'aba007',
         badge: 'ABA',
-        number: '005',
-        date: 'Sun, Nov 15 · 2:30 PM EST',
-        venue: 'Abu Dhabi',
-        matchups: [
-            'TBD VS TBD',
-            'Seth VS Kye',
-            'BartGiggle VS Bash',
-            'Dean VS jackson',
-            'Oliveira VS KitoTotf'
-        ],
-        card: {
-            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Main Card': [
-                { wc: 'TBD', a: 'TBD', b: 'TBD' },
-                { wc: 'TBD', a: 'TBD', b: 'TBD' },
-                { wc: 'TBD', a: 'TBD', b: 'TBD' },
-                { wc: 'TBD', a: 'TBD', b: 'TBD' },
-                { wc: 'TBD', a: 'TBD', b: 'TBD' }
-            ],
-            'Prelims': [
-                { wc: 'MW', a: 'Seth', b: 'Kye' },
-                { wc: 'CW', a: 'BartGiggle', b: 'Bash' },
-                { wc: 'CW', a: 'Dean', b: 'jackson' },
-                { wc: 'LW', a: 'Oliveira', b: 'KitoTotf' }
-            ]
-        }
-    },
-    {
-        id: 'aba006',
-        badge: 'ABA',
-        number: '006',
-        date: 'Sun, Nov 22 · 2:30 PM EST',
+        number: '007',
+        date: 'Sun, Nov 29 · 2:30 PM EST',
         venue: 'Venue TBD',
         matchups: ['TBD VS TBD'],
         card: {
@@ -50,10 +19,24 @@ const eventsData = [
         }
     },
     {
-        id: 'aba007',
+        id: 'aba008',
         badge: 'ABA',
-        number: '007',
-        date: 'Sun, Nov 29 · 2:30 PM EST',
+        number: '008',
+        date: 'TBD',
+        venue: 'Venue TBD',
+        matchups: ['TBD VS TBD'],
+        card: {
+            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
+            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
+        }
+    },
+    {
+        id: 'aba009',
+        badge: 'ABA',
+        number: '009',
+        date: 'TBD',
         venue: 'Venue TBD',
         matchups: ['TBD VS TBD'],
         card: {
@@ -68,6 +51,63 @@ const eventsData = [
 // ---------- PAST EVENT RESULTS ----------
 // w = winner, l = loser. m: 'dec' | 'ko' | 'draw' | 'forf' (no-show, counts as a decision win). verb is the Discord wording.
 const pastEvents = [
+    {
+        id: 'aba006',
+        title: 'ABA 006',
+        badge: 'ABA',
+        number: '006',
+        date: 'Sat, Nov 21',
+        venue: 'Final Results',
+        awards: [
+            { label: 'Performance of the Night', who: 'Cobra Boy' },
+            { label: 'Fight of the Night', who: 'Cobra Boy & Ryan Garcia' }
+        ],
+        sections: [
+            { name: 'PRELIMS', bouts: [
+                { w: 'DICE',       wRec: '1-0-0', wNote: '(1 TKO)', l: 'PLIXY', lRec: '0-1-1', m: 'ko',  verb: "TKO's" },
+                { w: 'Oliveira',   wRec: '2-4-0', l: 'Khabib', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'Hipposquad', wRec: '1-1-1', wNote: '(1 TKO)', l: 'Chino', lRec: '0-2-0', m: 'ko', verb: "TKO's" },
+                { w: 'BartGiggle', wRec: '1-2-0', l: 'Deuhhh', lRec: '0-1-0', m: 'dec', verb: 'beats' }
+            ]},
+            { name: 'MAIN CARD', bouts: [
+                { w: 'Michael Chandler', wRec: '1-0-0', l: 'Expert', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'jackson',          wRec: '2-0-0', wNote: '(1 TKO)', l: 'demo', lRec: '3-2-0', m: 'ko', verb: "TKO's" }
+            ]},
+            { name: 'MAIN EVENT', bouts: [
+                { w: 'Cobra Boy', wRec: '5-0-0', wNote: '(3 TKO)', l: 'Ryan Garcia', lRec: '2-1-0', m: 'ko', verb: "TKO's" }
+            ]}
+        ]
+    },
+    {
+        id: 'aba005',
+        title: 'ABA 005',
+        badge: 'ABA',
+        number: '005',
+        date: 'Sun, Nov 15 · 2:30 PM EST',
+        venue: 'Final Results',
+        awards: [
+            { label: 'Performance of the Night', who: 'Jaybocka' },
+            { label: 'Fight of the Night', who: 'Vite & Africano' }
+        ],
+        sections: [
+            { name: 'PRELIMS', bouts: [
+                { w: 'Nick Diaz', wRec: '3-0-0', wNote: '(1 TKO)', l: 'BIG T', lRec: '0-1-0', m: 'ko', verb: "TKO's" },
+                { w: 'Jackmon',   wRec: '2-0-0', wNote: '(2 TKO)', l: 'Sephtis', lRec: '2-1-0', m: 'ko', verb: "TKO's" },
+                { w: 'jackson',   wRec: '1-0-0', l: 'xavi.27212', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'LeviTotf',  wRec: '1-1-0', l: 'Oliveira', lRec: '1-4-0', m: 'dec', verb: 'beats' }
+            ]},
+            { name: 'MAIN CARD', bouts: [
+                { w: 'Max Bless',  wRec: '1-0-0', l: 'Seth', lRec: '1-2-0', m: 'dec', verb: 'beats' },
+                // Draw: both fighters get a draw on their record (w / l are just the two fighters)
+                { w: 'Hipposquad', wRec: '0-1-1', l: 'PLIXY', lRec: '0-1-1', m: 'draw', verb: 'draw with' },
+                { w: 'demo', wRec: '3-1-0', wNote: '(1 TKO)', l: 'Grayson', lRec: '2-2-0', m: 'ko', verb: "TKO's" },
+                { w: 'Jaybocka',   wRec: '1-0-0', wNote: '(1 TKO)', l: 'NAGI', lRec: '0-1-0', m: 'ko', verb: "TKO's" }
+            ]},
+            { name: 'MAIN EVENT', bouts: [
+                { w: 'Vite', wRec: '1-1-0', wNote: '(1 TKO)', l: 'Africano', lRec: '0-1-0', m: 'ko', verb: "TKO's" }
+            ]}
+        ]
+    },
     {
         id: 'aba004',
         title: 'ABA 004',
@@ -131,9 +171,9 @@ const pastEvents = [
         venue: 'Final Results',
         sections: [
             { name: 'PRELIMS', bouts: [
-                { w: 'demo',       wRec: '1-0-0', l: 'KitoTotf', lRec: '0-1-0', m: 'dec', verb: 'beats' },
+                { w: 'demo',       wRec: '1-0-0', l: 'LeviTotf', lRec: '0-1-0', m: 'dec', verb: 'beats' },
                 { w: 'Matt Tyson', wRec: '1-0-0', l: 'Lockloader', lRec: '0-1-0', m: 'dec', verb: 'beats' },
-                { w: 'Grayson',    wRec: '1-0-0', l: 'Nugget', lRec: '0-1-0', m: 'dec', verb: 'beats' }
+                { w: 'Grayson',    wRec: '1-0-0', l: 'the.nug.', lRec: '0-1-0', m: 'dec', verb: 'beats' }
             ]},
             { name: 'MAIN CARD', bouts: [
                 { w: 'Oliveira', wRec: '1-1-0', l: 'BartGiggle', lRec: '0-2-0', m: 'dec', verb: 'beats' },
@@ -192,6 +232,13 @@ const earlierRecords = {
     // Replace with real fights once the results are known.
     'Dragon5000': { loss: 1 },
     'InCore':     { dec: 1 }
+};
+
+// Nicknames, shown under the name on the fighter profile
+const nicknames = {
+    'Cobra Boy':  'The Viper',
+    'Zac':        'Gamine Rapide',
+    'Matt Tyson': 'Peekaboo'
 };
 
 // Optional: force a photo filename when the auto-slug looks bad
@@ -263,7 +310,8 @@ pastEvents.forEach(ev => {
 function resultText(eventId) {
     const b = pastBouts[eventId] && pastBouts[eventId][currentMatchupIndices[eventId]];
     if (!b) return '';
-    return `${dn(b.w)} def. ${dn(b.l)} · ${b.m === 'ko' ? 'KO' : b.m === 'draw' ? 'Draw' : b.m === 'forf' ? 'Forfeit' : 'Decision'}`;
+    if (b.m === 'draw') return `${dn(b.w)} drew with ${dn(b.l)} · Draw`;
+    return `${dn(b.w)} def. ${dn(b.l)} · ${b.m === 'ko' ? 'KO' : b.m === 'forf' ? 'Forfeit' : 'Decision'}`;
 }
 
 function stepMatchup(eventId, dir) {
@@ -529,6 +577,11 @@ function buildRoster() {
 function openFighter(name) {
     const st = fighterStats(name);
     document.getElementById('fm-name').textContent = dn(name);
+    const nickEl = document.getElementById('fm-nick');
+    if (nickEl) {
+        nickEl.textContent = nicknames[name] ? `\u201C${nicknames[name]}\u201D` : '';
+        nickEl.hidden = !nicknames[name];
+    }
     document.getElementById('fm-total').textContent = 'Record: ' + recordText(st);
     document.getElementById('fm-dec').textContent = st.dec;
     document.getElementById('fm-ko').textContent = st.ko;
@@ -620,7 +673,7 @@ function renderPast() {
                 const label = b.m === 'ko' ? 'KO' : b.m === 'draw' ? 'Draw' : b.m === 'forf' ? 'Forfeit' : 'Decision';
                 cardHtml += `
                     <div class="bout-row result-row">
-                        <span><b>${dn(b.w)}</b><em>def.</em><b>${dn(b.l)}</b></span>
+                        <span><b>${dn(b.w)}</b><em>${b.m === 'draw' ? 'drew with' : 'def.'}</em><b>${dn(b.l)}</b></span>
                         <span class="method ${b.m}">${label}</span>
                     </div>`;
             });
@@ -683,4 +736,121 @@ function renderPast() {
 renderEvents();
 renderPast();
 updateWatchTab();
+
+// ---------- RANKINGS ----------
+// Edit this list after each card. Use the same fighter names as in the results above.
+// Records are filled in automatically from the results.
+const rankingsData = {
+    p4p: ['Jaybocka', 'Vite', 'Cobra Boy', 'Nick Diaz', 'Mystic', 'Lamar', 'Vinny', 'Ctuckk', 'Jackmon', 'jackson'],
+    divisions: [
+        {
+            name: 'Lightweight', champion: 'Vite', defenses: 0, photo: 'champ-vite.png',
+            ranks: ['Cobra Boy', 'Mystic', 'Sephtis', 'InCore', 'Ryan Garcia', 'Zac', 'Bluray', 'Oliveira', 'LeviTotf', 'Flawless Boxing', 'Africano', 'Deuhhh', 'Khabib']
+        },
+        {
+            name: 'Middleweight', champion: 'Jaybocka', defenses: 0, photo: 'champ-jaybocka.png',
+            ranks: ['Nick Diaz', 'Lamar', 'Vinny', 'Jackmon', 'jackson', 'demo', 'Grayson', 'Hipposquad', 'DICE', 'Max Bless', 'BartGiggle', 'Dragon5000', 'NAGI', 'MacEm', 'PLIXY'],
+            notRanked: ['Zatras', 'Nick Diaz #2', 'Chino']
+        },
+        {
+            name: 'Heavyweight', champion: null, vacant: true,
+            ranks: ['Matt Tyson', 'Ctuckk', 'Michael Chandler', 'Capertic', 'Seth', 'Expert', 'Lockloader', 'the.nug.', 'xavi.27212', 'Dean']
+        }
+    ]
+};
+
+const CHAMP_SILHOUETTE = '<svg viewBox="0 0 200 170" aria-hidden="true"><circle cx="112" cy="62" r="34" fill="#d0d0d0"/><path d="M30 170 Q40 112 112 104 Q184 112 194 170Z" fill="#d0d0d0"/><path d="M52 170 L84 118 L112 150 L140 118 L172 170Z" fill="#111"/><path d="M84 170 L96 140 L128 140 L140 170Z" fill="#e0a800"/></svg>';
+
+function rankRow(n, key) {
+    const li = document.createElement('li');
+    li.className = 'rank-item rank-link';
+    li.tabIndex = 0;
+    li.setAttribute('role', 'button');
+    const num = document.createElement('b');   num.textContent = n;
+    const nm = document.createElement('span'); nm.textContent = dn(key);
+    const rec = document.createElement('i');   rec.className = 'rank-rec'; rec.textContent = recordText(fighterStats(key));
+    li.append(num, nm, rec);
+    li.addEventListener('click', () => openFighter(key));
+    li.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFighter(key); } });
+    return li;
+}
+
+function buildRankings() {
+    const root = document.getElementById('rankings-root');
+    if (!root) return;
+    root.innerHTML = '';
+
+    // Pound for pound
+    const p4p = document.createElement('div');
+    p4p.className = 'p4p-block';
+    const top = rankingsData.p4p[0];
+    p4p.innerHTML = `<div class="p4p-header"><p class="division-label">Pound for Pound</p><h3 class="champ-name"></h3><p class="champ-tag">#1 Pound-for-Pound</p></div>`;
+    p4p.querySelector('.champ-name').textContent = top ? dn(top) : 'TBD';
+    const p4pList = document.createElement('ol');
+    p4pList.className = 'rank-list p4p-list';
+    rankingsData.p4p.forEach((k, i) => p4pList.appendChild(rankRow(i + 1, k)));
+    p4p.appendChild(p4pList);
+    root.appendChild(p4p);
+
+    // Divisions
+    const grid = document.createElement('div');
+    grid.className = 'divisions-grid';
+    rankingsData.divisions.forEach(d => {
+        const block = document.createElement('div');
+        block.className = 'division-block';
+
+        const label = document.createElement('p'); label.className = 'division-label'; label.textContent = d.name;
+        const name = document.createElement('h3');  name.className = 'champ-name';
+        name.textContent = d.champion ? dn(d.champion) : (d.vacant ? 'Vacant' : 'TBD');
+        const tag = document.createElement('p');    tag.className = 'champ-tag'; tag.textContent = 'Champion';
+        block.append(label, name, tag);
+
+        if (d.champion) {
+            const st = fighterStats(d.champion);
+            const meta = document.createElement('p');
+            meta.className = 'champ-meta';
+            meta.textContent = `${recordText(st)} · ${st.ko} ${st.ko === 1 ? 'finish' : 'finishes'} · ${d.defenses || 0} title ${d.defenses === 1 ? 'defense' : 'defenses'}`;
+            block.appendChild(meta);
+        }
+
+        const photo = document.createElement('div');
+        photo.className = 'champ-photo';
+        if (d.champion) {
+            const img = new Image();
+            img.alt = dn(d.champion);
+            img.onload = () => { photo.innerHTML = ''; photo.classList.add('has-photo'); photo.appendChild(img); };
+            img.src = d.photo || photoFor(d.champion);
+        }
+        photo.innerHTML = CHAMP_SILHOUETTE;
+        block.appendChild(photo);
+
+        const list = document.createElement('ol');
+        list.className = 'rank-list';
+        if (d.ranks.length) {
+            d.ranks.forEach((k, i) => list.appendChild(rankRow(i + 1, k)));
+        } else {
+            for (let i = 1; i <= 15; i++) {
+                const li = document.createElement('li');
+                li.className = 'rank-item';
+                li.innerHTML = `<b>${i}</b><span>TBD</span>`;
+                list.appendChild(li);
+            }
+        }
+        block.appendChild(list);
+
+        if (d.notRanked && d.notRanked.length) {
+            const nr = document.createElement('p'); nr.className = 'nr-label'; nr.textContent = 'Not ranked';
+            const nrList = document.createElement('ul'); nrList.className = 'rank-list nr-list';
+            d.notRanked.forEach(k => {
+                const li = rankRow('NR', k);
+                nrList.appendChild(li);
+            });
+            block.append(nr, nrList);
+        }
+        grid.appendChild(block);
+    });
+    root.appendChild(grid);
+}
+
 buildRoster();
+buildRankings();
