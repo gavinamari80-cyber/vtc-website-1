@@ -1356,3 +1356,43 @@ h2.section-title::after {
 
 .champ-photo.has-photo { height: 180px; border-radius: 6px; border-bottom: none; }
 .champ-photo.has-photo img { width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center 4%; }
+
+/* ===== EVENT POSTER + CHAMPIONSHIP BADGE ===== */
+.hero-poster {
+    position: absolute;
+    right: 44px;
+    top: 18px;
+    bottom: 18px;
+    height: calc(100% - 36px);
+    width: auto;
+    border-radius: 8px;
+    box-shadow: 0 12px 36px rgba(0,0,0,0.55);
+    z-index: 1;
+}
+.hero-poster[hidden] { display: none; }
+.featured-event.has-poster .featured-watermark { display: none; }
+.event-poster {
+    float: right;
+    width: 240px;
+    max-width: 40%;
+    margin: 0 0 14px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+}
+.card-details-inner::after { content: ''; display: block; clear: both; }
+.title-fight {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 2px 6px;
+    border: 1px solid #e0a800;
+    border-radius: 3px;
+    font: 700 9px/1.2 var(--body);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #e0a800;
+    vertical-align: 1px;
+}
+@media (max-width: 820px) {
+    .hero-poster { display: none; }
+    .event-poster { float: none; display: block; width: 100%; max-width: 320px; margin: 0 auto 14px; }
+}

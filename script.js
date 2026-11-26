@@ -8,14 +8,40 @@ const eventsData = [
         id: 'aba007',
         badge: 'ABA',
         number: '007',
-        date: 'Sun, Nov 29 · 2:30 PM EST',
-        venue: 'Venue TBD',
-        matchups: ['TBD VS TBD'],
+        date: 'Fri, Nov 27 · 2:30 PM EST',
+        venue: 'Las Vegas, Nevada',
+        poster: 'poster-aba007.jpg',
+        matchups: [
+            'Ctuckk VS Michael Chandler',
+            'Lamar VS Vinny',
+            'Jackmon VS jackson',
+            'Cobra Boy VS Zac',
+            'demo VS DICE',
+            'Seth VS Tomato',
+            'Ryan Garcia VS Oliveira',
+            'Hipposquad VS BartGiggle',
+            'Chino VS Nick Diaz #2',
+            'xavi.27212 VS Dean',
+            'Elliot VS PLIXY',
+            'Ghost VS M_X'
+        ],
         card: {
-            'Main Event':     [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Co-Main Event':  [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Main Card':      [{ wc: 'TBD', a: 'TBD', b: 'TBD' }],
-            'Prelims':        [{ wc: 'TBD', a: 'TBD', b: 'TBD' }]
+            'Main Event':    [{ wc: 'HW', title: true, a: 'Ctuckk', b: 'Michael Chandler' }],
+            'Co-Main Event': [{ wc: 'MW', a: 'Lamar', b: 'Vinny' }],
+            'Main Card': [
+                { wc: 'MW', a: 'Jackmon', b: 'jackson' },
+                { wc: 'LW', a: 'Cobra Boy', b: 'Zac' },
+                { wc: 'MW', a: 'demo', b: 'DICE' },
+                { wc: 'HW', a: 'Seth', b: 'Tomato' },
+                { wc: 'LW', a: 'Ryan Garcia', b: 'Oliveira' }
+            ],
+            'Prelims': [
+                { wc: 'MW', a: 'Hipposquad', b: 'BartGiggle' },
+                { wc: 'MW', a: 'Chino', b: 'Nick Diaz #2' },
+                { wc: 'HW', a: 'xavi.27212', b: 'Dean' },
+                { wc: 'CW', a: 'Elliot', b: 'PLIXY' },
+                { wc: 'HW', a: 'Ghost', b: 'M_X' }
+            ]
         }
     },
     {
@@ -424,7 +450,7 @@ function renderEvents() {
                     cardHtml += `
                         <div class="bout-row">
                             <abbr class="wc" title="Weight class">${b.wc || 'TBD'}</abbr>
-                            <span><b>${b.a || 'TBD'}</b><em>vs</em><b>${b.b || 'TBD'}</b></span>
+                            <span>${b.title ? '<small class="title-fight">Championship</small>' : ''}<b>${dn(b.a) || 'TBD'}</b><em>vs</em><b>${dn(b.b) || 'TBD'}</b></span>
                         </div>`;
                 });
             });
@@ -468,6 +494,7 @@ function renderEvents() {
             </div>
             <div id="${ev.id}-fullcard" class="event-card-details">
                 <div class="card-details-inner">
+                    ${ev.poster ? `<img class="event-poster" src="${ev.poster}" alt="${ev.badge} ${ev.number} fight poster" loading="lazy">` : ''}
                     <h4>${ev.badge} ${ev.number} FULL FIGHT CARD</h4>
                     ${cardHtml}
                 </div>
@@ -478,6 +505,19 @@ function renderEvents() {
 }
 
 // ---------- WATCH TAB (pulls first event) ----------
+function updateHeroPoster() {
+    const first = eventsData[0];
+    const img = document.getElementById('hero-poster');
+    const hero = document.querySelector('.featured-event');
+    if (!img || !hero) return;
+    if (first && first.poster) {
+        img.src = first.poster;
+        img.alt = `${first.badge} ${first.number} fight poster`;
+        img.hidden = false;
+        hero.classList.add('has-poster');
+    }
+}
+
 function updateWatchTab() {
     const first = eventsData[0];
     if (!first) return;
@@ -736,6 +776,7 @@ function renderPast() {
 renderEvents();
 renderPast();
 updateWatchTab();
+updateHeroPoster();
 
 // ---------- RANKINGS ----------
 // Edit this list after each card. Use the same fighter names as in the results above.
